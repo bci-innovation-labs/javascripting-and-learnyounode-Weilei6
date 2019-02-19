@@ -1,0 +1,70 @@
+[0m[1m[0m[2Jc[44m[37m[3;2f                                                                             [3;4fLEARN YOU THE NODE.JS FOR MUCH WIN!                                      [44m[37m[4;2f                                                                             [4;4f[23mSelect an exercise and hit [3mEnter[23m to begin                                [44m[37m[5;2f                                                                             [5;4f─────────────────────────────────────────────────────────────────────────[6;2f                                                                             [7;2f                                                                             [8;2f                                                                             [9;2f                                                                             [10;2f                                                                             [11;2f                                                                             [12;2f                                                                             [13;2f                                                                             [14;2f                                                                             [15;2f                                                                             [16;2f                                                                             [17;2f                                                                             [18;2f                                                                             [44m[37m[19;2f                                                                             [19;4f─────────────────────────────────────────────────────────────────────────[20;2f                                                                             [21;2f                                                                             [22;2f                                                                             [23;2f                                                                             [24;2f                                                                             [?25l[2;2f                                                                             [6;4f[44m[37m» HELLO WORLD                                                 [COMPLETED][7;4f[44m[37m» BABY STEPS                                                  [COMPLETED][8;4f[44m[37m» MY FIRST I/O!                                               [COMPLETED][9;4f[44m[37m» MY FIRST ASYNC I/O!                                         [COMPLETED][10;4f[44m[37m» FILTERED LS                                                 [COMPLETED][11;4f[44m[37m» MAKE IT MODULAR                                             [COMPLETED][12;4f[44m[37m» HTTP CLIENT                                                 [COMPLETED][13;4f[44m[37m» HTTP COLLECT                                                [COMPLETED][14;4f[44m[37m» JUGGLING ASYNC                                              [COMPLETED][15;4f[44m[37m» TIME SERVER                                                 [COMPLETED][16;4f[44m[37m» HTTP FILE SERVER                                            [COMPLETED][17;4f[44m[37m» HTTP UPPERCASERER                                           [COMPLETED][18;4f[47m[34m» HTTP JSON API SERVER                                                   [20;4f[44m[37mHELP                                                                     [21;4f[44m[37mCHOOSE LANGUAGE                                                          [22;4f[44m[37mCHECK FOR UPDATE                                                         [23;4f[44m[37mCREDITS                                                                  [24;4f[44m[37mEXIT                                                                     [44m[37m[25;2f                                                                             [18;4f[44m[37m» HTTP JSON API SERVER                                                   [17;4f[47m[34m» HTTP UPPERCASERER                                           [COMPLETED][17;4f[44m[37m» HTTP UPPERCASERER                                           [COMPLETED][16;4f[47m[34m» HTTP FILE SERVER                                            [COMPLETED][26;1f[0m[0m[2Jc[?25h[0m[1;1f   
+ # LEARN YOU THE NODE.JS FOR MUCH WIN!  
+   
+ ## HTTP FILE SERVER (Exercise 11 of 13)  
+   
+  Write an HTTP server that serves the same text file for each request it  
+  receives.  
+   
+  Your server should listen on the port provided by the first argument to  
+  your program.  
+   
+  You will be provided with the location of the file to serve as the second  
+  command-line argument. You must use the fs.createReadStream() method to  
+  stream the file contents to the response.  
+   
+ ─────────────────────────────────────────────────────────────────────────────  
+   
+ ## HINTS  
+   
+  Because we need to create an HTTP server for this exercise rather than a  
+  generic TCP server, we should use the http module from Node core. Like the  
+  net module, http also has a method named http.createServer() but this one  
+  creates a server that can talk HTTP.  
+   
+  http.createServer() takes a callback that is called once for each  
+  connection received by your server. The callback function has the  
+  signature:  
+   
+     function callback (request, response) { /* ... */ }  
+   
+  Where the two arguments are objects representing the HTTP request and the  
+  corresponding response for this request. request is used to fetch  
+  properties, such as the header and query-string from the request while  
+  response is for sending data to the client, both headers and body.  
+   
+  Both request and response are also Node streams! Which means that you can  
+  use the streaming abstractions to send and receive data if they suit your  
+  use-case.  
+   
+  http.createServer() also returns an instance of your server. You must call  
+  server.listen(portNumber) to start listening on a particular port.  
+   
+  A typical Node HTTP server looks like this:  
+   
+     var http = require('http')  
+     var server = http.createServer(function (req, res) {  
+       // request handling logic...  
+     })  
+     server.listen(8000)  
+   
+  Documentation on the http module can be found by pointing your browser  
+  here:  
+  file://C:\Users\Wei\AppData\Roaming\npm\node_modules\learnyounode\node_api  
+  doc\http.html  
+   
+  The fs core module also has some streaming APIs for files. You will need  
+  to use the fs.createReadStream() method to create a stream representing  
+  the file you are given as a command-line argument. The method returns a  
+  stream object which you can use src.pipe(dst) to pipe the data from the  
+  src stream to the dst stream. In this way you can connect a filesystem  
+  stream with an HTTP response stream.  
+   
+ ─────────────────────────────────────────────────────────────────────────────  
+   
+   » To print these instructions again, run: learnyounode print  
+   » To execute your program in a test environment, run: learnyounode run  
+     program.js  
+   » To verify your program, run: learnyounode verify program.js  
+   » For help run: learnyounode help  
+   
